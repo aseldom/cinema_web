@@ -6,15 +6,10 @@ import java.util.Map;
 public class FilmSession {
 
     private int id;
-
     private int filmId;
-
     private int hallId;
-
     private Timestamp startTime;
-
     private Timestamp endTime;
-
     private int price;
 
     public FilmSession() {

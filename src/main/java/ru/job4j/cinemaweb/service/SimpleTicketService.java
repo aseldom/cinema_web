@@ -7,7 +7,7 @@ import ru.job4j.cinemaweb.repository.TicketRepository;
 import java.util.Optional;
 
 @Service
-public class SimpleTicketService implements TicketRepository {
+public class SimpleTicketService implements TicketService {
 
     private final TicketRepository ticketRepository;
 
@@ -16,7 +16,7 @@ public class SimpleTicketService implements TicketRepository {
     }
 
     @Override
-    public Ticket save(Ticket ticket) {
+    public Optional<Ticket> save(Ticket ticket) {
         return ticketRepository.save(ticket);
     }
 

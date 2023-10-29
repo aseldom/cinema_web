@@ -15,38 +15,40 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 
-    <title>Кинотеатр Эпицентр</title>
+    <title>Покупка билета</title>
 </head>
 <body>
 <div class="container-fluid p-0">
     <header th:insert="blocks/header :: header"></header>
+    <div th:style="'text-align: center;'">
+        <h3>Поздравляем, билет успешно куплен.</h3>
+    </div>
     <div class="container">
         <div class="row">
             <table class="table">
                 <tbody>
-                <tr th:each="film: ${films}">
-                    <div class="col-3">
-                        <td>
-                            <div class="mb-3">
-                                <img th:src="${'files/' + (film.fileId)}" th:width="250" alt="No image">
-                            </div>
-                        </td>
-                    </div>
-                    <div class="col-3">
-                        <td>
-                            <h1 th:text="${film.name}"/>
-                            <p>
+                <tr>
+                <td>
+                    <h1 th:text="${ses.filmDto.name}"/>
+                    <h6 th:text="${ses.filmDto.year+',   '
+                            +ses.filmDto.genre.name+',   '
+                            +ses.filmDto.duration+' минут'+',   '
+                            +ses.filmDto.minimalAge+'+'}"/>
 
-                                <h6 th:text="${film.year+',   '+film.genre.name+',   '+film.duration+' минут'+',   '+film.minimalAge}+'+'"/>
-                            </p>
+                    <p th:text="${ses.filmDto.description}"/>
+                    <h5 th:text="${'Время сеанса: '+ses.startTime
+                            +',   Зал: '+ses.hall.name}"/>
 
-                            <p th:text="${film.description}"/>
-                        </td>
-                    </div>
+                    <h5 th:text="${'Ваш ряд: '+ticket.row
+                            +',   Ваше место: '+ticket.place
+                            +', Цена билета: '+ses.price+' рублей'}"/>
+                </td>
+                </td>
                 </tr>
                 </tbody>
             </table>
         </div>
+        </form>
     </div>
     <footer th:insert="blocks/footer :: footer"></footer>
 </div>

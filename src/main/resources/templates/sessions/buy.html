@@ -27,7 +27,8 @@
         <form class="mt-3" th:action="@{/sessions/buy}" method="post" th:object="${ses}" enctype="multipart/form-data">
             <div class="row">
                 <table class="table">
-                    <tbody><tr>
+                    <tbody>
+                    <tr>
                         <th th:style="'width: 20%;'"></th>
                         <th th:style="'width: 80%;'"></th>
                     </tr>
@@ -47,18 +48,24 @@
                         <h5 th:text="${'Время сеанса: '+ses.startTime
                             +',   Зал: '+ses.hall.name
                             +', Цена билета: '+ses.price}"/>
-                        <h5>выберите ряд</h5>
-                        <select th:field="*{r}">
-                            <option th:each="number : ${#numbers.sequence(1, r)}"
-                                    th:value="${number}"
-                                    th:text="${number}"></option>
-                        </select>
+                        <div>
+                            <label for="selectedRow">Выберите ряд:</label>
+                            <select id="selectedRow" name="selectedRow">
+                                <option th:each="i: ${#numbers.sequence(1, ses.hall.rows)}" th:value="${i}" th:text="${i}"></option>
+                            </select>
+                            <label for="selectedColumn">Выберите место:</label>
+                            <select id="selectedColumn" name="selectedColumn">
+                                <option th:each="i: ${#numbers.sequence(1, ses.hall.columns)}" th:value="${i}" th:text="${i}"></option>
+                            </select>
+                        </div>
 
-
-                        <div class="col-6">
+                        <div class="mb-3" th:if="${error}">
+                            <p class="text-danger" th:text="${error}"></p>
+                        </div>
+                        <div class="col-3">
                             <div class="row">
                                 <div>
-                                    <a th:href="@{/sessions/{sessionId}(sessionId=${ses.id})}" class="btn btn-primary w-100">Купить билет</a>
+                                    <p><button class="btn btn-primary w-200" type="submit">Купить билет</button></p>
                                 </div>
                             </div>
                         </div>

@@ -5,13 +5,9 @@ import java.util.Map;
 public class Ticket {
 
     private int id;
-
     private int sessionId;
-
     private int row;
-
     private int place;
-
     private int userId;
 
     public Ticket() {
