@@ -33,7 +33,7 @@ class Sql2oHallRepositoryTest {
 
     @Test
     public void whenGetSameNameOfHalls() {
-        var hallsNameExpect = List.of("Big", "Midle", "Small");
+        var hallsNameExpect = List.of("Big", "Middle", "Small");
         var halls = sql2oHallRepository.findAll();
         List<String> listHallsName = new ArrayList<>();
         for (var hall : halls) {
