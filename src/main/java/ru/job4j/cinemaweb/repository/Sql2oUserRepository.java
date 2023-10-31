@@ -50,4 +50,11 @@ public class Sql2oUserRepository implements UserRepository {
         }
     }
 
+    public void clear() {
+        try (var connection = sql2o.open()) {
+            var query = connection.createQuery("DELETE FROM users");
+            query.executeUpdate();
+        }
+    }
+
 }

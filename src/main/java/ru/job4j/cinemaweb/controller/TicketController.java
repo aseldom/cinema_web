@@ -25,7 +25,8 @@ public class TicketController {
 
     @GetMapping("/ticket")
     public String getById(Model model, HttpServletRequest request) {
-        int ticketId = (int) request.getSession().getAttribute("ticketId");
+        var session = request.getSession();
+        int ticketId = (int) session.getAttribute("ticketId");
         Optional<Ticket> ticketOptional = ticketService.findById(ticketId);
         if (ticketOptional.isEmpty()) {
             model.addAttribute("message", "Такого билета нет");

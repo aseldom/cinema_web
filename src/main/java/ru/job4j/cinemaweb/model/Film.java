@@ -1,6 +1,7 @@
 package ru.job4j.cinemaweb.model;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class Film {
 
@@ -12,6 +13,20 @@ public class Film {
     private int minimalAge;
     private int duration;
     private int fileId;
+
+    public Film() {
+    }
+
+    public Film(int id, String name, String description, int year, int genreId, int minimalAge, int duration, int fileId) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.year = year;
+        this.genreId = genreId;
+        this.minimalAge = minimalAge;
+        this.duration = duration;
+        this.fileId = fileId;
+    }
 
     public static final Map<String, String> COLUMN_MAPPING = Map.of(
             "id", "id",
@@ -54,5 +69,22 @@ public class Film {
 
     public int getFileId() {
         return fileId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Film film = (Film) o;
+        return id == film.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -2,6 +2,7 @@ package ru.job4j.cinemaweb.model;
 
 import java.sql.Timestamp;
 import java.util.Map;
+import java.util.Objects;
 
 public class FilmSession {
 
@@ -79,5 +80,22 @@ public class FilmSession {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        FilmSession that = (FilmSession) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

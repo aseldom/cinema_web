@@ -4,6 +4,8 @@ import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
 import ru.job4j.cinemaweb.model.Hall;
 
+import java.util.Collection;
+
 @Repository
 public class Sql2oHallRepository implements HallRepository {
 
@@ -19,6 +21,14 @@ public class Sql2oHallRepository implements HallRepository {
             var query = connection.createQuery("SELECT * FROM halls WHERE id = :id", true)
                     .addParameter("id", id);
             return query.setColumnMappings(Hall.COLUMN_MAPPING).executeAndFetchFirst(Hall.class);
+        }
+    }
+
+    @Override
+    public Collection<Hall> findAll() {
+        try (var connection = sql2o.open()) {
+            var query = connection.createQuery("SELECT * FROM halls");
+            return query.setColumnMappings(Hall.COLUMN_MAPPING).executeAndFetch(Hall.class);
         }
     }
 

@@ -1,6 +1,7 @@
 package ru.job4j.cinemaweb.model;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class Hall {
 
@@ -51,5 +52,22 @@ public class Hall {
 
     public int getColumns() {
         return columns;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Hall hall = (Hall) o;
+        return id == hall.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -15,6 +15,12 @@ public class File {
         this.path = path;
     }
 
+    public File(int id, String name, String path) {
+        this.id = id;
+        this.name = name;
+        this.path = path;
+    }
+
     public int getId() {
         return id;
     }
@@ -48,12 +54,11 @@ public class File {
             return false;
         }
         File file = (File) o;
-        return id == file.id && Objects.equals(path, file.path);
+        return id == file.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, path);
+        return Objects.hash(id);
     }
-
 }
