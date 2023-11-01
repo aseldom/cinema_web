@@ -41,4 +41,13 @@ class Sql2oHallRepositoryTest {
         }
         assertThat(hallsNameExpect).usingRecursiveComparison().isEqualTo(listHallsName);
     }
+
+    @Test
+    public void whenFindBuyId() {
+        int id = 1;
+        var hallsName = List.of("Big", "Middle", "Small");
+        var hall = sql2oHallRepository.findById(id);
+
+        assertThat(hall.getName()).isEqualTo(hallsName.get(id - 1));
+    }
 }
