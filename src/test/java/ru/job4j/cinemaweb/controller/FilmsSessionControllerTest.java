@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import ru.job4j.cinemaweb.dto.FilmDto;
 import ru.job4j.cinemaweb.dto.FilmSessionDto;
 import ru.job4j.cinemaweb.model.*;
-import ru.job4j.cinemaweb.service.FileService;
 import ru.job4j.cinemaweb.service.FilmSessionService;
 import ru.job4j.cinemaweb.service.TicketService;
 
@@ -27,7 +26,6 @@ import static org.mockito.Mockito.when;
 
 class FilmsSessionControllerTest {
 
-    private FileService fileService;
     private TicketService ticketService;
     private FilmSessionService filmSessionService;
     private FilmSession filmSession;
@@ -43,10 +41,9 @@ class FilmsSessionControllerTest {
     @BeforeEach
     public void initServices() {
 
-        fileService = mock(FileService.class);
         filmSessionService = mock(FilmSessionService.class);
         ticketService = mock(TicketService.class);
-        filmsSessionController = new FilmsSessionController(filmSessionService, fileService, ticketService);
+        filmsSessionController = new FilmsSessionController(filmSessionService, ticketService);
         film = new Film(1, "Peace", "Peace of the world", 2023, 1, 12, 120, 1);
         genre = new Genre(1, "Horror");
         hall = new Hall(1, "Large", "Large hall", 20, 20);
@@ -102,6 +99,7 @@ class FilmsSessionControllerTest {
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpSession httpSession = new MockHttpSession();
         httpSession.setAttribute("user", user);
+        httpSession.setAttribute("sessionId", 1);
         String expectedMessage = "redirect:/tickets/ticket";
 
         when(request.getSession()).thenReturn(httpSession);
