@@ -17,6 +17,7 @@
 * Sql2o 1.6.0
 * PostgreSQL 14
 * PostgreSQL JDBC Driver 42.5.1
+* GitHub Action
 
 ## Окружение 
 Java 17, Maven 3.8, PostgreSQL 14;
