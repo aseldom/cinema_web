@@ -53,7 +53,6 @@ class TicketControllerTest {
                 150);
         filmDto = filmMapper.getDtoFromModel(film, genre);
         filmSessionDto = new FilmSessionDto();
-//        filmSessionDto = new FilmSessionDto(filmDto, filmSession, hall);
         ticket = new Ticket(99, 2, 3, 4, 5);
 
     }
