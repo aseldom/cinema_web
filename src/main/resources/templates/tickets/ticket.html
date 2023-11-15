@@ -29,15 +29,15 @@
                 <tbody>
                 <tr>
                 <td>
-                    <h1 th:text="${ses.filmDto.name}"/>
-                    <h6 th:text="${ses.filmDto.year+',   '
-                            +ses.filmDto.genre.name+',   '
-                            +ses.filmDto.duration+' минут'+',   '
-                            +ses.filmDto.minimalAge+'+'}"/>
+                    <h1 th:text="${ses.filmName}"/>
+                    <h6 th:text="${ses.year+',   '
+                            +ses.genre+',   '
+                            +ses.duration+' минут'+',   '
+                            +ses.minimalAge+'+'}"/>
 
-                    <p th:text="${ses.filmDto.description}"/>
+                    <p th:text="${ses.description}"/>
                     <h5 th:text="${'Время сеанса: '+ses.startTime
-                            +',   Зал: '+ses.hall.name}"/>
+                            +',   Зал: '+ses.hall}"/>
 
                     <h5 th:text="${'Ваш ряд: '+ticket.row
                             +',   Ваше место: '+ticket.place

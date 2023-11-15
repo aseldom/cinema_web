@@ -34,19 +34,19 @@
 
                         <td>
                             <div class="mb-3">
-                                <img th:src="${'files/' + (ses.filmDto.fileId)}" th:width="150" alt="No image">
+                                <img th:src="${'files/' + (ses.fileId)}" th:width="150" alt="No image">
                             </div>
                         </td>
                         <td>
-                            <h1 th:text="${ses.filmDto.name}"/>
-                            <h6 th:text="${ses.filmDto.year+',   '
-                            +ses.filmDto.genre.name+',   '
-                            +ses.filmDto.duration+' минут'+',   '
-                            +ses.filmDto.minimalAge+'+'}"/>
+                            <h1 th:text="${ses.filmName}"/>
+                            <h6 th:text="${ses.year+',   '
+                            +ses.genre+',   '
+                            +ses.duration+' минут'+',   '
+                            +ses.minimalAge+'+'}"/>
 
-                            <p th:text="${ses.filmDto.description}"/>
+                            <p th:text="${ses.description}"/>
                             <h5 th:text="${'Время сеанса: '+ses.startTime
-                            +',   Зал: '+ses.hall.name
+                            +',   Зал: '+ses.hall
                             +', Цена билета: '+ses.price}"/>
                             <div class="col-6">
                                 <div class="row">

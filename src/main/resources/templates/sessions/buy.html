@@ -34,28 +34,28 @@
                     </tr>
                     <td>
                         <div class="mb-3">
-                            <img th:src="@{/files/{fileId}(fileId=*{filmDto.fileId})}" class="w-100" alt="No image">
+                            <img th:src="@{/files/{fileId}(fileId=*{fileId})}" class="w-100" alt="No image">
                         </div>
                     </td>
                     <td>
-                        <h1 th:text="${ses.filmDto.name}"/>
-                        <h6 th:text="${ses.filmDto.year+',   '
-                            +ses.filmDto.genre.name+',   '
-                            +ses.filmDto.duration+' минут'+',   '
-                            +ses.filmDto.minimalAge+'+'}"/>
+                        <h1 th:text="${ses.filmName}"/>
+                        <h6 th:text="${ses.year+',   '
+                            +ses.genre+',   '
+                            +ses.duration+' минут'+',   '
+                            +ses.minimalAge+'+'}"/>
 
-                        <p th:text="${ses.filmDto.description}"/>
+                        <p th:text="${ses.description}"/>
                         <h5 th:text="${'Время сеанса: '+ses.startTime
-                            +',   Зал: '+ses.hall.name
+                            +',   Зал: '+ses.hall
                             +', Цена билета: '+ses.price}"/>
                         <div>
                             <label for="selectedRow">Выберите ряд:</label>
                             <select id="selectedRow" name="selectedRow">
-                                <option th:each="i: ${#numbers.sequence(1, ses.hall.rows)}" th:value="${i}" th:text="${i}"></option>
+                                <option th:each="i: ${#numbers.sequence(1, ses.rows)}" th:value="${i}" th:text="${i}"></option>
                             </select>
                             <label for="selectedColumn">Выберите место:</label>
                             <select id="selectedColumn" name="selectedColumn">
-                                <option th:each="i: ${#numbers.sequence(1, ses.hall.columns)}" th:value="${i}" th:text="${i}"></option>
+                                <option th:each="i: ${#numbers.sequence(1, ses.columns)}" th:value="${i}" th:text="${i}"></option>
                             </select>
                         </div>
 

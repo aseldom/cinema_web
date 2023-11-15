@@ -1,7 +1,9 @@
 package ru.job4j.cinemaweb.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.job4j.cinemaweb.dto.FilmDto;
+import ru.job4j.cinemaweb.mapper.FilmMapper;
 import ru.job4j.cinemaweb.model.Film;
 import ru.job4j.cinemaweb.model.Genre;
 import ru.job4j.cinemaweb.repository.FilmRepository;
@@ -11,22 +13,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Service
+@AllArgsConstructor
 public class SimpleFilmService implements FilmService {
 
     private final FilmRepository filmRepository;
 
     private final GenreRepository genreRepository;
 
-    public SimpleFilmService(FilmRepository sql2oFilmRepository, GenreRepository sql2oGenreRepository) {
-        this.filmRepository = sql2oFilmRepository;
-        this.genreRepository = sql2oGenreRepository;
-    }
+    private final FilmMapper filmMapper;
 
     @Override
     public FilmDto findById(int id) {
         var film = filmRepository.findById(id);
         var genre = findGenreById(film.getGenreId());
-        return new FilmDto(film, genre);
+        return filmMapper.getDtoFromModel(film, genre);
     }
 
     private Genre findGenreById(int id) {
@@ -39,7 +39,7 @@ public class SimpleFilmService implements FilmService {
         Collection<FilmDto> collection = new ArrayList<>();
         for (Film film : films) {
             var genre = findGenreById(film.getGenreId());
-            collection.add(new FilmDto(film, genre));
+            collection.add(filmMapper.getDtoFromModel(film, genre));
         }
         return collection;
     }

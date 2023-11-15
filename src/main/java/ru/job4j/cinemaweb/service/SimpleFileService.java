@@ -1,5 +1,6 @@
 package ru.job4j.cinemaweb.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.job4j.cinemaweb.dto.FileDto;
 import ru.job4j.cinemaweb.repository.FileRepository;
@@ -13,13 +14,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class SimpleFileService implements FileService {
 
     private final FileRepository sql2oFileRepository;
-
-    public SimpleFileService(FileRepository sql2oFileRepository) {
-        this.sql2oFileRepository = sql2oFileRepository;
-    }
 
     @Override
     public Optional<FileDto> getFileById(int id) {

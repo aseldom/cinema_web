@@ -2,12 +2,15 @@ package ru.job4j.cinemaweb.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mapstruct.factory.Mappers;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.ui.ConcurrentModel;
 import org.springframework.ui.Model;
 import ru.job4j.cinemaweb.dto.FilmDto;
 import ru.job4j.cinemaweb.dto.FilmSessionDto;
+import ru.job4j.cinemaweb.mapper.FilmMapper;
+import ru.job4j.cinemaweb.mapper.FilmSessionMapper;
 import ru.job4j.cinemaweb.model.*;
 import ru.job4j.cinemaweb.service.FilmSessionService;
 import ru.job4j.cinemaweb.service.TicketService;
@@ -29,6 +32,8 @@ class FilmsSessionControllerTest {
     private TicketService ticketService;
     private FilmSessionService filmSessionService;
     private FilmSession filmSession;
+    private final FilmMapper filmMapper = Mappers.getMapper(FilmMapper.class);
+    private final FilmSessionMapper filmSessionMapper = Mappers.getMapper(FilmSessionMapper.class);
 
     private FilmsSessionController filmsSessionController;
     private Film film;
@@ -51,9 +56,8 @@ class FilmsSessionControllerTest {
                 Timestamp.valueOf("2023-10-18 11:00:00"),
                 Timestamp.valueOf("2023-10-18 13:00:00"),
                 150);
-        filmDto = new FilmDto(film, genre);
-        filmSessionDto = new FilmSessionDto(filmDto, filmSession, hall);
-
+        filmDto = filmMapper.getDtoFromModel(film, genre);
+        filmSessionDto = filmSessionMapper.getDtoFromModel(film, filmSession, genre, hall);
     }
 
     @Test

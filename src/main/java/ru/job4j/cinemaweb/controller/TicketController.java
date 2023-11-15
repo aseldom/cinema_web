@@ -1,5 +1,6 @@
 package ru.job4j.cinemaweb.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,16 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("/tickets")
 public class TicketController {
 
     private final FilmSessionService filmSessionService;
     private final TicketService ticketService;
-
-    public TicketController(FilmSessionService filmSessionService, TicketService ticketService) {
-        this.filmSessionService = filmSessionService;
-        this.ticketService = ticketService;
-    }
 
     @GetMapping("/ticket")
     public String getById(Model model, HttpServletRequest request) {

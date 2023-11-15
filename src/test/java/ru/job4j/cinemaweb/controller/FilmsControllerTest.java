@@ -2,10 +2,12 @@ package ru.job4j.cinemaweb.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mapstruct.factory.Mappers;
 import org.springframework.ui.ConcurrentModel;
 import org.springframework.ui.Model;
 import ru.job4j.cinemaweb.dto.FileDto;
 import ru.job4j.cinemaweb.dto.FilmDto;
+import ru.job4j.cinemaweb.mapper.FilmMapper;
 import ru.job4j.cinemaweb.model.Film;
 import ru.job4j.cinemaweb.model.Genre;
 import ru.job4j.cinemaweb.service.FileService;
@@ -25,6 +27,8 @@ class FilmsControllerTest {
 
     private FilmsController filmsController;
 
+    private final FilmMapper filmMapper = Mappers.getMapper(FilmMapper.class);
+
     @BeforeEach
     public void initServices() {
         fileService = mock(FileService.class);
@@ -39,7 +43,8 @@ class FilmsControllerTest {
                         + "     океанов и высочайших вершин, отправляется в новое, самое опасное своё путешествие.\n"
                         + "     Ему предстоит обогнуть Землю на воздушном шаре в полном одиночестве.",
                 2023, 6, 12, 99, 1);
-        FilmDto filmDto1 = new FilmDto(film1, new Genre(1, "Мелодрама"));
+        Genre genre = new Genre(1, "Мелодрама");
+        FilmDto filmDto1 = filmMapper.getDtoFromModel(film1, genre);
         FileDto fileDto1 = new FileDto("file1", new byte[]{1, 2, 3});
         Model model = new ConcurrentModel();
         String expectedMessage = "films/list";

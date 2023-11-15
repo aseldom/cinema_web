@@ -36,7 +36,7 @@
                         <td>
                             <h1 th:text="${film.name}"/>
                             <p>
-                                <h6 th:text="${film.year+',   '+film.genre.name+',   '+film.duration+' минут'+',   '+film.minimalAge}+'+'"/>
+                                <h6 th:text="${film.year+',   '+film.genre+',   '+film.duration+' минут'+',   '+film.minimalAge}+'+'"/>
                             </p>
                             <p th:text="${film.description}"/>
                         </td>

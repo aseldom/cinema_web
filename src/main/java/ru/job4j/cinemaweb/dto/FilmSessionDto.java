@@ -1,49 +1,28 @@
 package ru.job4j.cinemaweb.dto;
 
-import ru.job4j.cinemaweb.model.FilmSession;
-import ru.job4j.cinemaweb.model.Hall;
+import lombok.*;
 
 import java.sql.Timestamp;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class FilmSessionDto {
 
     private int id;
-    private FilmDto filmDto;
-    private Hall hall;
-    private Timestamp startTime;
-    private Timestamp endTime;
+    private int fileId;
+    private int year;
+    private int duration;
+    private int minimalAge;
     private int price;
+    private int rows;
+    private int columns;
+    private String genre;
+    private String filmName;
+    private String description;
+    private String hall;
+    private Timestamp startTime;
 
-    public FilmSessionDto(FilmDto filmDto, FilmSession filmSession, Hall hall) {
-        this.id = filmSession.getId();
-        this.filmDto = filmDto;
-        this.hall = hall;
-        this.startTime = filmSession.getStartTime();
-        this.endTime = filmSession.getEndTime();
-        this.price = filmSession.getPrice();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public FilmDto getFilmDto() {
-        return filmDto;
-    }
-
-    public Hall getHall() {
-        return hall;
-    }
-
-    public Timestamp getStartTime() {
-        return startTime;
-    }
-
-    public Timestamp getEndTime() {
-        return endTime;
-    }
-
-    public int getPrice() {
-        return price;
-    }
 }
