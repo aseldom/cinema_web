@@ -1,4 +1,4 @@
-# job4j_cinema_web
+# cinema_web
 
 ## О проекте
 
@@ -29,7 +29,7 @@ Java 17, Maven 3.8, PostgreSQL 14;
 - Выполнить метод main
 - Открыть веб-браузер по адресу: 127.0.0.1:8080
 
-## Screenshot
+## Screenshots
 - Главная страница
 ![](/img/main_page.png)
 - Страница регистрации
@@ -50,3 +50,8 @@ Java 17, Maven 3.8, PostgreSQL 14;
 ![](/img/buy_ticket_successfully.png)
 - Страница с результатом покупки билета (неудачно). Билет на данное место уже куплен.
 ![](/img/buy_ticket_error.png)
+
+---
+#### Контакты для связи:
+* email: a.seldom@gmail.com
+* telegram: @aseldom
